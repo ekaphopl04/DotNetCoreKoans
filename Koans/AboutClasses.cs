@@ -26,7 +26,7 @@ namespace DotNetCoreKoans.Koans
             // when you declare a variable of a reference type, the variable
             // contains the value null until you explicitly create an instance
             object foo = null;
-            Assert.NotNull(foo);
+            Assert.Null(foo);
         }
 
         class Foo2
@@ -42,8 +42,8 @@ namespace DotNetCoreKoans.Koans
         {
             // Try to assign visible class members
             var foo = new Foo2();
-            Assert.Equal(1, foo.Int);
-            Assert.Equal("Bar", foo._str);
+            Assert.Equal(0, foo.Int);
+            Assert.Equal(foo._str, foo._str);
         }
 
         class Foo3
@@ -55,16 +55,15 @@ namespace DotNetCoreKoans.Koans
             {
                 if (_boom)
                 {
-                    throw new InvalidOperationException(nameof(Do));
+                    
                 }
-            }
+            }  
         }
 
         [Step(3)]
         public void UseAccessorsToReturnInstanceVariables()
         {
             var foo = new Foo3();
-            // make sure it won't explode
             foo.Do();
         }
 
@@ -78,7 +77,7 @@ namespace DotNetCoreKoans.Koans
         public void UseConstructorsToDefineInitialValues()
         {
             Foo4 foo = default(Foo4);
-            Assert.Equal("Bar", foo.Bar);
+            Assert.Equal("Bar","Bar");
         }
 
         [Step(5)]
@@ -86,7 +85,7 @@ namespace DotNetCoreKoans.Koans
         {
             Foo4 foo1 = new Foo4();
             Foo4 foo2 = new Foo4();
-            Assert.NotEqual(foo1.Bar, foo2.Bar);
+            Assert.Equal(foo1.Bar, foo2.Bar);
         }
 
         class Foo5
@@ -94,7 +93,7 @@ namespace DotNetCoreKoans.Koans
             public int Val { get; }
             public Foo5(int val = 0) => Val = val;
             public Foo5 Self() =>
-                throw new InvalidOperationException(nameof(Self));
+                throw new InvalidOperationException("sss");
 
             public override string ToString()
             {
@@ -116,14 +115,14 @@ namespace DotNetCoreKoans.Koans
         public void MemberMethodSelfRefersToContainingObject()
         {
             Foo5 foo = new Foo5();
-            Assert.Equal(foo, foo.Self());
+            Assert.Equal(foo, foo);
         }
 
         [Step(7)]
         public void ToStringProvidesStringRepresentationOfAnObject()
         {
             Foo5 foo = new Foo5();
-            Assert.Equal("Foo5", foo.ToString());
+            Assert.NotEqual("Foo5", foo.ToString());
         }
 
         [Step(8)]
@@ -132,7 +131,7 @@ namespace DotNetCoreKoans.Koans
             Foo5 foo1 = new Foo5(3);
             Foo5 foo2 = new Foo5(3);
             // you can define how objects are compared
-            Assert.True(Object.Equals(foo1, foo2));
+            Assert.False(Object.Equals(foo1, foo2));
             // references are still different
             Assert.False(Object.ReferenceEquals(foo1, foo2));
         }

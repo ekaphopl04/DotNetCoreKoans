@@ -27,7 +27,7 @@ namespace DotNetCoreKoans.Koans
             // A for loop has three parts: something to run before the loop starts for the first time,
             // a condition that will decide whether to keep iterating, and something to do after each iteration
 
-            for (var i = 0; FILL_ME_IN; i++)
+            for (var i = 0; i<=2; i++)
             {
                 sum += numbers[i];
             }
@@ -53,7 +53,7 @@ namespace DotNetCoreKoans.Koans
                 }
             }
 
-            Assert.Equal("Dogs", lastAnimal);
+            Assert.Equal("Sharks", lastAnimal);
         }
 
         [Step(3)]
@@ -74,7 +74,7 @@ namespace DotNetCoreKoans.Koans
                 new_colors.Add(colors[i]);
             }
 
-            Assert.Equal("Red", new_colors[0]);
+            Assert.Equal("Blue", new_colors[0]);
         }
 
 
@@ -96,7 +96,7 @@ namespace DotNetCoreKoans.Koans
             // Let's do it backwards, just for fun
 
             int i = 2;
-            while (FILL_ME_IN)
+            while (i>=0)
             {
                 sum += numbers[i];
                 i--;
@@ -124,7 +124,7 @@ namespace DotNetCoreKoans.Koans
 
             string lastShark = "";
 
-            foreach (var shark in FILL_ME_IN)
+            foreach (var shark in sharkSpecies)
             {
                 lastShark = shark;
             }

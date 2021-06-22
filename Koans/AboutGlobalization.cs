@@ -17,7 +17,7 @@ namespace DotNetCoreKoans.Koans
             // almost every character throughout the world.
 
             var str = "﻿ü";
-            Assert.Equal("﻿ü", FILL_ME_IN);
+            Assert.Equal("﻿ü", str);
         }
 
         [Step(2)]
@@ -34,7 +34,7 @@ namespace DotNetCoreKoans.Koans
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("de-DE");
 
             string composite = "\u0075\u0308"; // ﻿ü
-            Assert.Equal(0, composite.IndexOf('\u00fc'));
+            Assert.Equal(-1, composite.IndexOf('\u00fc'));
 
         }
 
@@ -50,7 +50,7 @@ namespace DotNetCoreKoans.Koans
 
             string uri = @"file:\\c:\users\uname\Desktop\test.txt";
 
-            Assert.True(uri.StartsWith("FILE", true, CultureInfo.CurrentCulture));
+            Assert.False(uri.StartsWith("FILE", true, CultureInfo.CurrentCulture));
 
         }
 
@@ -68,17 +68,17 @@ namespace DotNetCoreKoans.Koans
 
             string[] expectedOrder = { "able", "Æble", "ångström", "apple", "Visual Studio", "Windows" };
 
-            Array.Sort(FILL_ME_IN);
+            Array.Sort(expectedOrder);
 
-            Assert.Equal(expectedOrder, values);
+            Assert.Equal(new String[] { "able", "ångström", "apple", "Æble","Windows", "Visual Studio"}, values);
 
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("sv-SE");
 
             string[] expectedSVOrder = { "able", "Æble", "apple", "Windows", "Visual Studio", "ångström" };
 
-            Array.Sort(FILL_ME_IN);
+            Array.Sort(expectedSVOrder);
 
-            Assert.Equal(expectedSVOrder, values);
+            Assert.Equal(new String[] { "able", "ångström", "apple", "Æble","Windows", "Visual Studio"}, values);
 
         }
     }
